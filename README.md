@@ -1,4 +1,4 @@
-# MIT Maker Portfolio
+# MIT Maker Portfolio supporting codebase
 
 ## Projects
 
