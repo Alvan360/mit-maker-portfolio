@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NU Digital Twin</title>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Fullscreen map canvas -->
+  <div id="map-container">
+    <div id="map"></div>
+  </div>
+
+  <!-- TOP CENTER: Compass bar -->
+  <div id="compass-bar">
+    <div id="compass-track"></div>
+    <div id="compass-center-mark"></div>
+  </div>
+
+  <!-- LEFT OVERLAY PANEL -->
+  <div id="left-panel" class="glass-panel">
+    <!-- Search -->
+    <div id="search-wrapper">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="search-input" placeholder="Search buildings" />
+    </div>
+
+    <!-- Collapsible: Building Scale Models -->
+    <div class="collapsible expanded">
+      <div class="collapsible-header">
+        <span class="collapse-arrow">&#9660;</span>
+        <span>Building Scale Models</span>
+      </div>
+      <div class="collapsible-body">
+        <label class="layer-item">
+          <span class="layer-icon">&#9638;</span>
+          <span class="layer-label">BIM</span>
+        </label>
+        <label class="layer-item">
+          <span class="layer-icon">&#9678;</span>
+          <span class="layer-label">Rhino (Building)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Collapsible: Urban Scale Models -->
+    <div class="collapsible expanded">
+      <div class="collapsible-header">
+        <span class="collapse-arrow">&#9660;</span>
+        <span>Urban Scale Models</span>
+      </div>
+      <div class="collapsible-body">
+        <label class="layer-item active-item">
+          <span class="layer-icon">&#9730;</span>
+          <span class="layer-label">OSM Buildings</span>
+          <span class="active-dot"></span>
+        </label>
+        <label class="layer-item">
+          <span class="layer-icon">&#9641;</span>
+          <span class="layer-label">UBEM</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Collapsible: Controls -->
+    <div class="collapsible expanded">
+      <div class="collapsible-header">
+        <span class="collapse-arrow">&#9660;</span>
+        <span>Controls</span>
+      </div>
+      <div class="collapsible-body">
+        <label class="layer-item control-item" data-control="energy">
+          <span class="layer-icon">&#9889;</span>
+          <span class="layer-label">Energy</span>
+        </label>
+        <label class="layer-item control-item" data-control="thermal">
+          <span class="layer-icon">&#127777;</span>
+          <span class="layer-label">Thermal Comfort</span>
+        </label>
+        <label class="layer-item control-item" data-control="wind">
+          <span class="layer-icon">&#127744;</span>
+          <span class="layer-label">Wind</span>
+        </label>
+        <label class="layer-item control-item" data-control="solar">
+          <span class="layer-icon">&#9728;</span>
+          <span class="layer-label">Solar</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="solar-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </label>
+      </div>
+    </div>
+
+    <!-- Footer links -->
+    <div id="left-footer">
+      <span class="footer-link"><span class="fi">&#63;</span> Help</span>
+      <span class="footer-link"><span class="fi">&#9881;</span> Settings</span>
+    </div>
+  </div>
+
+  <!-- CONTROLS DETAIL PANEL -->
+  <div id="controls-panel" class="glass-panel hidden">
+    <button id="controls-close">&times;</button>
+    <div id="controls-content"></div>
+  </div>
+
+  <!-- RIGHT OVERLAY PANEL (collapsible) -->
+  <button id="btn-resources" class="float-btn" title="Resources">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+  </button>
+  <div id="right-panel" class="glass-panel hidden">
+    <div class="right-section">
+      <div class="right-section-header">Resources</div>
+      <div class="resource-list">
+        <a class="resource-item" href="https://github.com/Alvan360/NUBostonbuildings" target="_blank" style="text-decoration:none;">
+          <span class="res-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="res-label">GitHub</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info panel (popup on building click) -->
+  <div id="info-panel" class="hidden">
+    <button id="close-panel">&times;</button>
+    <div id="info-content"></div>
+    <div id="admin-transform-section" class="hidden">
+      <div class="transform-section-title">Position Model</div>
+      <div class="transform-row">
+        <label class="transform-label" for="t-rot">Rotation</label>
+        <input type="number" id="t-rot-input" class="transform-num" min="-180" max="180" step="1" value="0" />
+        <input type="range" id="t-rot" min="-180" max="180" step="1" value="0" class="transform-slider" />
+      </div>
+      <div class="transform-buttons">
+        <button id="t-mirror-x" class="mirror-btn">Mirror X</button>
+        <button id="t-mirror-y" class="mirror-btn">Mirror Y</button>
+        <button id="t-flip-x" class="mirror-btn">Flip X</button>
+        <button id="t-flip-y" class="mirror-btn">Flip Y</button>
+      </div>
+      <div class="transform-row">
+        <label class="transform-label" for="t-shiftx">Shift X <span id="t-shiftx-val">0</span>m</label>
+        <input type="range" id="t-shiftx" min="-50" max="50" step="0.5" value="0" class="transform-slider" />
+      </div>
+      <div class="transform-row">
+        <label class="transform-label" for="t-shifty">Shift Y <span id="t-shifty-val">0</span>m</label>
+        <input type="range" id="t-shifty" min="-50" max="50" step="0.5" value="0" class="transform-slider" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin login overlay -->
+  <div id="admin-login" class="hidden">
+    <div class="admin-login-box">
+      <h3>Admin Access</h3>
+      <input type="password" id="admin-passcode" placeholder="Passcode" />
+      <button id="admin-login-btn">Login</button>
+      <div id="admin-login-error"></div>
+    </div>
+  </div>
+
+  <!-- Admin panel -->
+  <div id="admin-panel" class="hidden">
+    <button id="admin-close">&times;</button>
+    <h3>Admin Panel</h3>
+
+    <div class="admin-section">
+      <div class="admin-section-title">Import Model</div>
+      <input type="file" id="admin-model-file" accept=".glb,.gltf" />
+      <select id="admin-target-building">
+        <option value="">-- existing building --</option>
+      </select>
+      <div class="admin-or">or create new building</div>
+      <input type="text" id="admin-new-name" placeholder="New building name" />
+      <div class="admin-row">
+        <input type="number" id="admin-new-height" placeholder="Height (m)" value="20" min="1" />
+        <button id="admin-new-place" class="admin-btn">Place on map</button>
+      </div>
+      <button id="admin-attach" class="admin-btn admin-primary">Upload &amp; Attach</button>
+      <button id="admin-remove-model" class="admin-btn">Remove Model</button>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-title">Data</div>
+      <button id="admin-export" class="admin-btn">Export buildings-data.js</button>
+    </div>
+
+    <div class="admin-section">
+      <button id="admin-logout" class="admin-btn">Log out</button>
+    </div>
+  </div>
+
+  <!-- BOTTOM: Footer bar -->
+  <div id="bottom-bar">
+    <span id="copyright-text">NU Digital Twin | About | Share | Stats</span>
+    <div id="bottom-bar-right">
+      <a href="https://github.com/Alvan360/NUBostonbuildings" target="_blank" class="bottom-link" title="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- FLOATING BUTTONS -->
+  <!-- Right side: Screenshot (under zoom buttons) -->
+  <button id="btn-camera" class="float-btn float-btn-under-zoom" title="Screenshot">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+  </button>
+
+  <!-- Bottom-left: Admin panel toggle (admin only) -->
+  <button id="btn-admin" class="float-btn float-btn-bottom-left admin-gear" title="Admin Panel">
+    <span>&#9881;</span>
+  </button>
+
+  <!-- Bottom-right: Layers + Home -->
+  <button id="btn-layers" class="float-btn float-btn-bottom-right float-btn-left" title="Layers">
+    <span>&#9776;</span>
+  </button>
+  <button id="btn-home" class="float-btn float-btn-bottom-right float-btn-right" title="Home">
+    <span>&#8962;</span>
+  </button>
+
+  <!-- Basemap popup -->
+  <div id="basemap-popup" class="glass-panel hidden">
+    <div class="basemap-option active-basemap" data-style="street">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3z"/><path d="M9 4v13"/><path d="M15 7v13"/></svg>
+      <span>Street</span>
+    </div>
+    <div class="basemap-option" data-style="satellite">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span>Satellite</span>
+    </div>
+    <div class="basemap-option" data-style="terrain">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 8 5-5 4 14H3z"/></svg>
+      <span>Terrain</span>
+    </div>
+  </div>
+
+  <!-- Scale indicator -->
+  <div id="scale-indicator">100 m</div>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="buildings-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
