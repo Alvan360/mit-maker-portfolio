@@ -15,7 +15,7 @@
 - [`boston-common-shadow-study/boston_common_map_clean.html`](boston-common-shadow-study/boston_common_map_clean.html) — Clean version of the map
 - [`boston-common-shadow-study/accumulative.jsx`](boston-common-shadow-study/accumulative.jsx) — Illustrator automation script
 - [`boston-common-shadow-study/categorizedivisions.jsx`](boston-common-shadow-study/categorizedivisions.jsx) — Illustrator automation script
-- [`boston-common-shadow-study/photoshop-shadow-isolater.jsx`](boston-common-shadow-study/photoshop-shadow-isolater.jsx) — Illustrator automation script
+- [`boston-common-shadow-study/photoshop-shadow-isolater.jsx`](boston-common-shadow-study/photoshop-shadow-isolater.jsx) — Photoshop automation script
 - [`boston-common-shadow-study/selecthours.jsx`](boston-common-shadow-study/selecthours.jsx) — Illustrator automation script
 
 ### 2. NU Digital Twin (Boston Buildings)
