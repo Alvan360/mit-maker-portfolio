@@ -18,7 +18,7 @@
 - [`boston-common-shadow-study/photoshop-shadow-isolater.jsx`](boston-common-shadow-study/photoshop-shadow-isolater.jsx) — Photoshop automation script
 - [`boston-common-shadow-study/selecthours.jsx`](boston-common-shadow-study/selecthours.jsx) — Illustrator automation script
 
-### 2. NU Digital Twin (Boston Buildings)
+### 2. NU Digital Twin (Boston Buildings) STILL IN PROGRESS- On hold since school has started.
 * **Context:** Interactive 3D digital twin of Northeastern University's Boston campus.
 * **Description:** A web-based platform for exploring building extrusions, toggling map layers, inspecting building details, and capturing screenshots.
 
