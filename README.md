@@ -1,6 +1,6 @@
 # MIT Maker Portfolio supporting codebase
 
-## Projects
+## Projects [please note- I vibecoded all the projects on here using OpenCode]
 
 ### 1. Boston Common Shadow Study (Civic Data & Automation)
 * **Context:** Developed during my internship with Prof. Segal for the Friends of the Public Garden.  
