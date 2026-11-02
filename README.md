@@ -2,9 +2,9 @@
 
 ## Projects [please note- I vibecoded all the projects on here using OpenCode]
 
-### 1. Boston Common Shadow Study (Civic Data & Automation)
+### 1. Boston Common Shadow Study (Civic Data & Automation) Visual elements of this project were uploaded through the Architecture Portfolio on Slideroom. 
 * **Context:** Developed during my internship with Prof. Segal for the Friends of the Public Garden.  
-* **Description:** A high-impact civic project analyzing shadow impacts on Boston Common vegetation to inform local public policy.
+* **Description:** A civic project analyzing shadow impacts on Boston Common vegetation to inform local public policy.
 
 **Key Technical Contributions:**
 - **Tree Canopy Mapping:** Used open-source tree data and an AI assistant to script an interactive HTML map (`boston_common_map.html`) plotting every tree in the Common with dynamically scaled, organic canopy blobs.
